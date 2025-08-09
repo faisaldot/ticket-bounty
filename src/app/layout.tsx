@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { ticketsPath } from "@/paths";
+import { Button } from "@/components/ui/button";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +36,9 @@ export default function RootLayout({
             <Link href='/' className="text-lg font-bold`">Home</Link>
           </div>
           <div>
-            <Link href={ticketsPath()} className="text-sm underline">Tickets</Link>
+            <Button asChild>
+              <Link href={ticketsPath()}>Tickets</Link>
+            </Button>
           </div>
         </nav>
         <main className="min-h-screen flex-1 overflow-y-auto overflow-x-hidden
