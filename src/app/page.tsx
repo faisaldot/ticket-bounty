@@ -1,16 +1,14 @@
-import { Separator } from "@/components/ui/separator";
+import Heading from "@/components/heading";
 import { ticketsPath } from "@/paths";
 import Link from "next/link";
 
 export default function HomePage() {
   return (
     <div className="flex-1 flex flex-col gap-y-8">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight">Home Page</h2>
-        <p className="text-sm text-muted-foreground">Your home place to start</p>
-      </div>
-
-      <Separator />
+      <Heading
+        title="HomePage"
+        description="Your home place to start"
+      />
 
       <div className="flex-1 flex flex-col items-center">
         <Link href={ticketsPath()} className="underline">Go to Tickets</Link>
