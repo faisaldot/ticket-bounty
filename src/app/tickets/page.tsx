@@ -1,11 +1,14 @@
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { initialTickets } from "@/data";
 import { ticketPath } from "@/paths";
+import { LucideCircleCheckBig, LucideFileText, LucidePencil } from "lucide-react";
 import Link from "next/link";
 
 const TicketIcons = {
-  OPEN: 'O',
-  IN_PROGRESS: '>',
-  DONE: 'X'
+  OPEN: <LucideFileText />,
+  IN_PROGRESS: <LucidePencil />,
+  DONE: <LucideCircleCheckBig />
 }
 
 export default function TicketsPage() {
@@ -16,14 +19,26 @@ export default function TicketsPage() {
         <p className="text-sm text-muted-foreground">All your tickets at one places</p>
       </div>
 
+      <Separator />
+
       <div className="flex-1 flex flex-col items-center gap-y-4">
         {initialTickets.map(ticket => (
-          <div key={ticket.id} className="w-full max-w-[420px] p-4 border border-slate-100 rounded">
-            <div>{TicketIcons[ticket.status]}</div>
-            <h2 className="text-lg">{ticket.title}</h2>
-            <p className="text-sm">{ticket.content}</p>
-            <Link href={ticketPath(ticket.id)} className="underline">view</Link>
-          </div>
+          <Card key={ticket.id} className="w-full max-w-[420px]">
+            <CardHeader>
+              <CardTitle className="flex gap-x-2">
+                <span>{TicketIcons[ticket.status]}</span>
+                <span>{ticket.title}</span>
+              </CardTitle>
+            </CardHeader>
+
+            <CardContent>
+              <p className="line-clamp-3 whitespace-break-spaces">{ticket.content + ticket.content + ticket.content + ticket.content + ticket.content + ticket.content + ticket.content + ticket.content + ticket.content}</p>
+            </CardContent>
+
+            <CardFooter>
+              <Link href={ticketPath(ticket.id)} className="underline">view</Link>
+            </CardFooter>
+          </Card>
         ))}
       </div>
     </div>

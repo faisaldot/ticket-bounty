@@ -3,7 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { ticketsPath } from "@/paths";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { LucideKanban } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,15 +32,18 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <nav className="support-blackdrop-blur:bg-background/60 fixed left-0
         right-0 top-0 z-20 border-b bg-background/95 backdrop-blur w-full flex
-        py-2.5 px-5 justify-between
+        py-2.5 px-5 justify-between items-center
         ">
           <div>
-            <Link href='/' className="text-lg font-bold`">Home</Link>
+            <Link href='/' className={buttonVariants({ variant: 'ghost' })}>
+              <LucideKanban />
+              <h1 className="font-semibold text-lg">TicketBounty</h1>
+            </Link>
           </div>
           <div>
-            <Button asChild>
-              <Link href={ticketsPath()}>Tickets</Link>
-            </Button>
+            <Link href={ticketsPath()} className={buttonVariants({ variant: 'outline' })}>
+              Tickets
+            </Link>
           </div>
         </nav>
         <main className="min-h-screen flex-1 overflow-y-auto overflow-x-hidden
@@ -47,6 +52,6 @@ export default function RootLayout({
           {children}
         </main>
       </body>
-    </html>
+    </html >
   );
 }
