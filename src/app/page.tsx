@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
 
 export default function HomePage() {
   return (
@@ -9,6 +10,8 @@ export default function HomePage() {
           Your homepage to start
         </p>
       </div>
+
+      <Separator />
 
       <div className="flex-1 flex flex-col items-center">
         <Link href="/tickets" className="underline">

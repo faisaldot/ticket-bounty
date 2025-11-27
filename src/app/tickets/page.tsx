@@ -1,5 +1,12 @@
-import clsx from "clsx";
 import Link from "next/link";
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { initialData } from "../data";
 
 export default function TicketsPage() {
@@ -11,21 +18,26 @@ export default function TicketsPage() {
           Your ticket page to start
         </p>
       </div>
+      <Separator />
 
-      <div className="flex-1 flex flex-col items-center gap-y-4 animate-accordion-down">
+      <div className="flex-1 flex flex-col items-center  animate-accordion-down">
         {initialData.map((ticket) => (
-          <li
-            key={ticket.id}
-            className="list-none w-full max-w-[420px] border border-muted-foreground rounded p-4"
-          >
-            <h1 className="text-lg font-semibold truncate">{ticket.title}</h1>
-            <p className="text-sm text-muted-foreground truncate">
-              {ticket.content}
-            </p>
-            <Link className="underline" href={`/tickets/${ticket.id}`}>
-              View
-            </Link>
-          </li>
+          <Card key={ticket.id} className="w-full max-w-[420px] my-2">
+            <CardHeader>
+              <CardTitle>{ticket.title}</CardTitle>
+              <CardDescription className="line-clamp-3 whitespace-break-spaces">
+                {ticket.content}
+              </CardDescription>
+            </CardHeader>
+            <CardFooter>
+              <Link
+                className="text-sm underline"
+                href={`/tickets/${ticket.id}`}
+              >
+                View
+              </Link>
+            </CardFooter>
+          </Card>
         ))}
       </div>
     </div>
