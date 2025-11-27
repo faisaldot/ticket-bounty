@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Header from "@/components/header";
 import {
   Card,
   CardDescription,
@@ -12,12 +13,10 @@ import { initialData } from "../data";
 export default function TicketsPage() {
   return (
     <div className="flex-1 flex flex-col gap-y-8">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Tickets Page</h1>
-        <p className="text-sm text-muted-foreground mt-2">
-          Your ticket page to start
-        </p>
-      </div>
+      <Header
+        title="Tickets Page"
+        description="Your tickets page to start with"
+      />
       <Separator />
 
       <div className="flex-1 flex flex-col items-center  animate-accordion-down">
