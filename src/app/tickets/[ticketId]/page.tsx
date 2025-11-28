@@ -4,6 +4,8 @@ import Header from "@/components/header";
 import Placeholder from "@/components/placeholder";
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import TicketItem from "@/features/ticket/component/ticket-item";
+import type { Ticket } from "@/features/ticket/types";
 
 interface TicketPageProps {
   params: Promise<{ ticketId: string }>;
@@ -30,9 +32,8 @@ export default async function TicketPage({ params }: TicketPageProps) {
       <Header title="Ticket Page" description="All your tickets" />
       <Separator />
 
-      <div className="">
-        <h1>{ticket.title}</h1>
-        <p>{ticket.content}</p>
+      <div className="flex-1 flex flex-col items-center ">
+        <TicketItem ticket={ticket as Ticket} isDetails />
       </div>
     </div>
   );
