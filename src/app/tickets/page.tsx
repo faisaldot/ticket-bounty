@@ -1,11 +1,9 @@
+import { Suspense } from "react";
 import Header from "@/components/header";
-
 import { Separator } from "@/components/ui/separator";
-import TicketItem from "@/features/ticket/component/ticket-item";
-import type { Ticket } from "@/features/ticket/types";
-import { initialData } from "../data";
+import TicketsList from "@/features/ticket/component/tickets-list";
 
-export default function TicketsPage() {
+export default async function TicketsPage() {
   return (
     <div className="flex-1 flex flex-col gap-y-8">
       <Header
@@ -14,11 +12,9 @@ export default function TicketsPage() {
       />
       <Separator />
 
-      <div className="flex-1 flex flex-col items-center  animate-accordion-down">
-        {initialData.map((ticket) => (
-          <TicketItem key={ticket.id} ticket={ticket as Ticket} />
-        ))}
-      </div>
+      <Suspense fallback="loading...">
+        <TicketsList />
+      </Suspense>
     </div>
   );
 }

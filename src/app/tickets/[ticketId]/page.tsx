@@ -1,10 +1,8 @@
-import Link from "next/link";
-import { initialData } from "@/app/data";
+import { notFound } from "next/navigation";
 import Header from "@/components/header";
-import Placeholder from "@/components/placeholder";
-import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import TicketItem from "@/features/ticket/component/ticket-item";
+import TicketItem from "@/features/ticket/component/ticket-items";
+import { getTicket } from "@/features/ticket/queries/get-ticket";
 import type { Ticket } from "@/features/ticket/types";
 
 interface TicketPageProps {
@@ -13,19 +11,9 @@ interface TicketPageProps {
 
 export default async function TicketPage({ params }: TicketPageProps) {
   const { ticketId } = await params;
-  const ticket = initialData.find((ticket) => ticket.id === ticketId);
+  const ticket = await getTicket(ticketId);
 
-  if (!ticket)
-    return (
-      <Placeholder
-        label="No ticket found!"
-        button={
-          <Link href="/tickets" className={buttonVariants({ variant: "link" })}>
-            Go to tickets
-          </Link>
-        }
-      />
-    );
+  if (!ticket) notFound();
 
   return (
     <div className="flex-1 flex flex-col gap-y-8">

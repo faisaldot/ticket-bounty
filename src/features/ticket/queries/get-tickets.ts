@@ -1,0 +1,8 @@
+import { initialData } from "@/app/data";
+import type { Ticket } from "../types";
+
+export const getTickets = async (): Promise<Ticket[]> => {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
+  return new Promise((resolve) => resolve(initialData as Ticket[]));
+};
